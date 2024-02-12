@@ -81,7 +81,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Get current tag
         id: build_version
-        run: echo "current_tag=${GITHUB_REF#/refs/*/}"
+        run: echo "current_tag=${GITHUB_REF#refs/*/}"
       - name: Install Node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -100,4 +100,4 @@ jobs:
         with: 
           context: ./
           push: true
-          tags: shugewang/staybae-ci-cd:${{ steps.build_version.outputs.current_tag}}-wip, shugewang/staybae-ci-cd:latest
+          tags: shugewang/staybae-ci-cd:${{steps.build_version.outputs.current_tag}}-wip, shugewang/staybae-ci-cd:latest
