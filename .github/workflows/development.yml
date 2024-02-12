@@ -52,7 +52,7 @@ jobs:
         node-version: [18.x]
     runs-on: ubuntu-latest
     env:
-      SNYK_TOKEN: ${{ secrets.SYNK_TOKEN }}
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
