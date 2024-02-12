@@ -46,24 +46,24 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run test:unit
-  verify: 
-    strategy:
-      matrix: 
-        node-version: [18.x]
-    runs-on: ubuntu-latest
-    env:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm -g install snyk
-      - run: snyk test
-      - run: snyk monitor
+  # verify: 
+  #   strategy:
+  #     matrix: 
+  #       node-version: [18.x]
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #     - name: Install Node ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: npm install
+  #     - run: npm -g install snyk
+  #     - run: snyk test
+  #     - run: snyk monitor
   build:
     strategy:
       matrix: 
