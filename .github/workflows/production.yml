@@ -59,7 +59,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Get current tag
+      - name: Bump version and push tag
         id: build_version
         uses: mathieudutour/github-tag-action@v6.1
         with:
@@ -95,7 +95,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: sed -i 's/%%APP_VERSION%%/${{steps.build_version.outputs.new_tag}}/g' src/config/AppVersion.tsx
+      - run: sed -i 's/%%APP_VERSION%%/${{needs.build.outputs.NEXT_TAG}}/g' src/config/AppVersion.tsx
       - run: npm ci
       - run: npm run build
       - name: Setup Pages
@@ -108,5 +108,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-        
+
         
