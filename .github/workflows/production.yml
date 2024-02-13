@@ -1,5 +1,5 @@
 name: Production Pipeline
-run-name: 'Build: production :rocket'
+run-name: 'Build: production 🚀'
 
 on:
   push:
@@ -63,7 +63,7 @@ jobs:
         id: build_version
         uses: mathieudutour/github-tag-action@v6.1
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -111,5 +111,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
-        
