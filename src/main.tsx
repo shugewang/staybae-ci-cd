@@ -7,11 +7,10 @@ import '../styles/global.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { FavouriteContextProvider } from './context/FavouritesContext';
 
-async function enableMocking() {
-  // if (process.env.NODE_ENV !== 'development') {
-  //   return;
-  // }
+const BASE_URL =
+  process.env.NODE_ENV !== 'development' ? '/staybae-ci-cd/' : '/';
 
+async function enableMocking() {
   const { worker } = await import('./__mocks__/browser');
 
   console.log('ENV', process.env.NODE_ENV);
@@ -20,10 +19,7 @@ async function enableMocking() {
   // once the Service Worker is up and ready to intercept requests.
   return worker.start({
     serviceWorker: {
-      url:
-        process.env.NODE_ENV !== 'development'
-          ? '/staybae-ci-cd/mockServiceWorker.js'
-          : '/mockServiceWorker.js',
+      url: `${BASE_URL}mockServiceWorker.js`,
     },
     onUnhandledRequest: 'bypass',
   });
@@ -33,10 +29,7 @@ enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
       <FavouriteContextProvider>
-        <BrowserRouter
-          basename={
-            process.env.NODE_ENV !== 'development' ? '/staybae-ci-cd/' : '/'
-          }>
+        <BrowserRouter basename={BASE_URL}>
           <App />
         </BrowserRouter>
       </FavouriteContextProvider>
