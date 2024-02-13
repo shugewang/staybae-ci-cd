@@ -83,7 +83,9 @@ const PropertyDetails = () => {
     <main className="max-w-full px-8 sm:px-16 ml-16 mr-16">
       <div className="flex justify-between ml-4">
         <div className="my-10 w-full md:w-2/3">
-          <div className="text-xl md:text-2xl font-semibold">
+          <div
+            className="text-xl md:text-2xl font-semibold"
+            data-testid={'property-desc'}>
             {data?.description}
           </div>
           <div className="flex flex-row justify-between">
@@ -299,6 +301,18 @@ const PropertyDetails = () => {
       </div>
 
       <hr className="w-full m-6 border-1 border-gray-200 mx-auto" />
+      <div className="flex flex-col max-w-[1400px] w-full h-[700px] md:w-2/3">
+        <div className="font-light" data-testid={'property-long-desc'}>
+          {data?.description} in Sidmouth is a luxury, uniquely designed
+          celebration home with a sprawling top-tier private garden (with hot
+          tub, bar and countryside views). Sky-high glass frames a light-flooded
+          central courtyard around which lie 6 bedrooms, 4 bathrooms, a huge
+          high spec kitchen / diner, sitting room and games room. The inside
+          space extends out to a covered area with more seating, table tennis
+          and pool table via bifold doors, making it perfect for gatherings no
+          matter the weather.
+        </div>
+      </div>
     </main>
   );
 };
