@@ -35,7 +35,7 @@ enableMocking().then(() => {
       <FavouriteContextProvider>
         <BrowserRouter
           basename={
-            process.env.NODE_ENV !== 'development' ? '/staybae-ui/' : '/'
+            process.env.NODE_ENV !== 'development' ? '/staybae-ci-cd/' : '/'
           }>
           <App />
         </BrowserRouter>

@@ -14,7 +14,7 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import LoadingImage from 'src/assets/images/loading-image.gif';
 import Rating from 'src/components/rating/Rating';
 import useFavourite from 'src/hooks/useFavourite';
@@ -32,7 +32,7 @@ const PropertyDetails = () => {
   const { id } = useParams();
   const { isFavourite, addFavourite, removeFavourite } = useFavourite();
   const propertyIsSaved = isFavourite(id);
-
+  const navigate = useNavigate();
   const onSuccessPropertyLoaded = (successData: PropertyType) => {
     const allPropertyImages = [
       successData?.heroImg,
@@ -180,7 +180,11 @@ const PropertyDetails = () => {
               )}
             </div>
 
-            <button className="bg-pink-600 text-white w-full rounded-lg py-3 mt-10 hover:bg-pink-400">
+            <button
+              onClick={() =>
+                navigate('/book', { state: { propertyDetails: data } })
+              }
+              className="bg-pink-600 text-white w-full rounded-lg py-3 mt-10 hover:bg-pink-400">
               Reserve
             </button>
 
@@ -236,7 +240,11 @@ const PropertyDetails = () => {
               {data?.totalPrice ? data?.totalPrice + 120 : 0} total
             </div>
           </div>
-          <button className="bg-pink-600 text-white rounded-lg mr-4 p-2 hover:bg-pink-400">
+          <button
+            onClick={() =>
+              navigate('/book', { state: { propertyDetails: data } })
+            }
+            className="bg-pink-600 text-white rounded-lg mr-4 p-2 hover:bg-pink-400">
             Reserve
           </button>
         </div>
