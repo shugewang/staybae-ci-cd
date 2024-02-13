@@ -98,7 +98,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: sed -i 's/%%APP_VERSION%%/${{needs.build.outputs.NEXT_TAG}}/g' src/config/AppVersion.tsx
-      - run: npm ci
+      - name: Set up build dependencies
+        run: npm ci
       - run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
